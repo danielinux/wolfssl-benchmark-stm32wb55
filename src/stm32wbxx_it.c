@@ -25,6 +25,7 @@
 #include "uart.h"
 #include "stm32wbxx_it.h"
 extern RNG_HandleTypeDef hrng;
+extern PKA_HandleTypeDef hpka;
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -120,6 +121,17 @@ void RNG_IRQHandler(void)
   /* USER CODE BEGIN RNG_IRQn 1 */
 
   /* USER CODE END RNG_IRQn 1 */
+}
+
+void PKA_IRQHandler(void)
+{
+  /* USER CODE BEGIN PKA_IRQn 0 */
+
+  /* USER CODE END PKA_IRQn 0 */
+  HAL_PKA_IRQHandler(&hpka);
+  /* USER CODE BEGIN PKA_IRQn 1 */
+
+  /* USER CODE END PKA_IRQn 1 */
 }
 
 /******************************************************************************/

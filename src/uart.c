@@ -17,12 +17,21 @@ static void MX_USART1_UART_Init(void);
 
 
 RNG_HandleTypeDef hrng = { };
+PKA_HandleTypeDef hpka = { };
 
 int rng_init(void)
 {
     __HAL_RCC_RNG_CLK_ENABLE();
     hrng.Instance = RNG;
     HAL_RNG_Init(&hrng);
+    return 0;
+}
+
+int pka_init(void)
+{
+    __HAL_RCC_PKA_CLK_ENABLE();
+    hpka.Instance = PKA;
+    HAL_PKA_Init(&hpka);
     return 0;
 }
 

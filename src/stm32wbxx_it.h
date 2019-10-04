@@ -53,6 +53,7 @@ void PendSV_Handler(void);
 void SysTick_Handler(void);
 /* USER CODE BEGIN EFP */
 void RNG_IRQHandler(void);
+void PKA_IRQHandler(void);
 
 /* USER CODE END EFP */
 

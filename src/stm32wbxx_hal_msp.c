@@ -213,6 +213,28 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
 
 }
 
+/**
+* @brief PKA MSP Initialization
+* This function configures the hardware resources used in this example
+* @param hpka: PKA handle pointer
+* @retval None
+*/
+void HAL_PKA_MspInit(PKA_HandleTypeDef* hpka)
+{
+  if(hpka->Instance==PKA)
+  {
+  /* USER CODE BEGIN PKA_MspInit 0 */
+
+  /* USER CODE END PKA_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_PKA_CLK_ENABLE();
+  /* USER CODE BEGIN PKA_MspInit 1 */
+
+  /* USER CODE END PKA_MspInit 1 */
+  }
+
+}
+
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

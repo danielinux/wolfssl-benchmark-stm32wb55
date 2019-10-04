@@ -87,7 +87,8 @@ WOLFSSL_OBJS += 	\
 	$(WOLFSSL_BUILD)/wolfcrypt/tfm.o  \
 	$(WOLFSSL_BUILD)/wolfcrypt/dh.o \
 	$(WOLFSSL_BUILD)/wolfcrypt/benchmark/benchmark.o \
-	$(WOLFSSL_BUILD)/wolfcrypt/test/test.o
+	$(WOLFSSL_BUILD)/wolfcrypt/test/test.o \
+	$(WOLFSSL_BUILD)/wolfcrypt/port/st/stm32.o
 	
 OBJS_SPMATH:= $(WOLFSSL_BUILD)/wolfcrypt/sp_c32.o  \
  		 		$(WOLFSSL_BUILD)/wolfcrypt/sp_int.o
@@ -98,12 +99,16 @@ vpath %.c $(dir $(WOLFSSL_ROOT)/src)
 vpath %.c $(dir $(WOLFSSL_ROOT)/wolfcrypt/src)
 vpath %.c $(dir $(WOLFSSL_ROOT)/wolfcrypt/benchmark)
 vpath %.c $(dir $(WOLFSSL_ROOT)/wolfcrypt/test)
+vpath %.c $(dir $(WOLFSSL_ROOT)/wolfcrypt/port/st)
 vpath %.c $(dir $(STM32CUBE_ROOT)/Drivers/STM32WBxx_HAL_Driver/Src)
 vpath %.c $(dir $(STM32CUBE_ROOT)/Drivers/BSP/P-NUCLEO-WB55.Nucleo/)
 
 LSCRIPT:=stm32wb55.ld
 
 all: image.bin
+
+$(WOLFSSL_BUILD)/wolfcrypt/port/st:
+	mkdir -p $(@)
 
 $(WOLFSSL_BUILD)/wolfcrypt/benchmark:
 	mkdir -p $(@)
@@ -135,6 +140,9 @@ $(WOLFSSL_BUILD)/wolfcrypt/benchmark/%.o: $(WOLFSSL_ROOT)/wolfcrypt/benchmark/%.
 $(WOLFSSL_BUILD)/wolfcrypt/test/%.o: $(WOLFSSL_ROOT)/wolfcrypt/test/%.c
 	$(CC) -c -o $(@) $(CFLAGS) $^
 
+$(WOLFSSL_BUILD)/wolfcrypt/port/st/%.o: $(WOLFSSL_ROOT)/wolfcrypt/port/st/%.c
+	$(CC) -c -o $(@) $(CFLAGS) $^
+
 $(STM32CUBE_BUILD)/Drivers/%.o: $(STM32CUBE_ROOT)/Drivers/STM32WBxx_HAL_Driver/Src/%.c
 	$(CC) -c -o $(@) $(CFLAGS) $^
 
@@ -149,10 +157,11 @@ image.bin: image.elf
 image.hex: image.elf
 	$(OBJCOPY) -O ihex $^ $@
 
-image.elf: $(WOLFSSL_BUILD)/wolfcrypt/test $(WOLFSSL_BUILD)/wolfcrypt/benchmark $(STM32CUBE_BUILD)/Drivers $(STM32CUBE_BUILD)/BSP $(OBJS) $(LSCRIPT)
+image.elf: $(WOLFSSL_BUILD)/wolfcrypt/test $(WOLFSSL_BUILD)/wolfcrypt/port/st $(WOLFSSL_BUILD)/wolfcrypt/benchmark $(STM32CUBE_BUILD)/Drivers $(STM32CUBE_BUILD)/BSP $(OBJS) $(LSCRIPT)
 	$(LD) $(LDFLAGS) -Wl,--start-group $(OBJS) -Wl,--end-group -o $@ -T $(LSCRIPT)
 
 clean:
-	rm -f *.bin *.elf $(OBJS) wolfboot.map *.bin  *.hex src/*.o *.map tags
+	@rm -rf build/
+	@rm -f *.bin *.elf $(OBJS) wolfboot.map *.bin  *.hex src/*.o *.map tags
 
 FORCE:

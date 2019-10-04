@@ -17,6 +17,7 @@ void Error_Handler(void);
 
 int uart_init(void);
 int rng_init(void);
+int pka_init(void);
 uint32_t random_uint32(void);
 #endif /* __UART_H */
 

@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+#define WOLFSSL_STM32_PKA
+
 /* System */
 #define CUSTOM_RAND_GENERATE random_uint32
 #define CUSTOM_RAND_TYPE uint32_t
@@ -22,11 +24,15 @@ extern "C" {
  #define DEBUG_WOLFSSL
  #define WOLFSSL_LOG_PRINTF
 
+
 /* Single precision math */
 #define WOLFSSL_SP_MATH
 #define WOLFSSL_SP_SMALL
 #define SP_WORD_SIZE 32
 #define WOLFSSL_SP
+#define WOLFSSL_HAVE_SP_DH
+#define WOLFSSL_HAVE_SP_RSA
+#define WOLFSSL_HAVE_SP_ECC
 
 #define BENCH_EMBEDDED
 
@@ -93,9 +99,7 @@ extern "C" {
 //#define WOLFSSL_SHA3
 
 #define HAVE_ECC
-#define FP_ECC
-#define WOLFSSL_HAVE_SP_ECC
-#define WOLFSSL_HAVE_SP_ECC
+//#define FP_ECC
 #define ECC_TIMING_RESISTANT
 #define HAVE_SUPPORTED_CURVES
 
@@ -116,8 +120,6 @@ extern "C" {
 #define RSA_LOW_MEM
 #define WC_RSA_BLINDING
 #define WOLFSSL_STATIC_RSA
-#define WOLFSSL_HAVE_SP_DH
-#define WOLFSSL_HAVE_SP_RSA
 
 
 #define NO_DSA

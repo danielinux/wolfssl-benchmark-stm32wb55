@@ -12,6 +12,7 @@
 int main(void) {
     uart_init();
     rng_init();
+    pka_init();
 //    wolfcrypt_test(NULL);
     benchmark_test(NULL);
     return 0;

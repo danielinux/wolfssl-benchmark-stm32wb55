@@ -125,7 +125,7 @@ void (* const IV[])(void) =
     isr_empty,
     isr_empty,
     isr_empty,
-    isr_empty,
+    PKA_IRQHandler,
     isr_empty,
     isr_empty,
     isr_empty,

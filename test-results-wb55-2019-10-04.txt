@@ -1,0 +1,13 @@
+No PKA:
+ECC      256 key gen         2 ops took 2.000 sec, avg 999.853 ms, 1.000 ops/sec
+ECDHE    256 agree           2 ops took 2.000 sec, avg 999.802 ms, 1.000 ops/sec
+ECDSA    256 sign            2 ops took 2.000 sec, avg 999.885 ms, 1.000 ops/sec
+ECDSA    256 verify          2 ops took 3.000 sec, avg 1500.215 ms, 0.667 ops/sec
+
+
+STM32 PKA:
+ECC      256 key gen         2 ops took 1.000 sec, avg 500.102 ms, 2.000 ops/sec
+ECDHE    256 agree           2 ops took 1.999 sec, avg 999.601 ms, 1.000 ops/sec
+ECDSA    256 sign            2 ops took 1.000 sec, avg 500.138 ms, 1.999 ops/sec
+ECDSA    256 verify          6 ops took 1.000 sec, avg 166.667 ms, 6.000 ops/sec
+
