@@ -12,7 +12,7 @@ WOLFSSL_ROOT:=$(HOME)/src/wolfssl
 STM32CUBE_ROOT:=$(HOME)/src/STM32CubeWB/STM32Cube_FW_WB_V1.2.0
 DEBUG?=0
 CFLAGS=-mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16
-CFLAGS+=-mthumb -Wall -Wextra -Wno-main -Wstack-usage=1024 -ffreestanding -Wno-unused \
+CFLAGS+=-mthumb -Wall -Wextra -Wno-main -Wstack-usage=2048 -ffreestanding -Wno-unused \
 		-Isrc -I$(STM32CUBE_ROOT)/Drivers/BSP/P-NUCLEO-WB55.Nucleo/ -I$(STM32CUBE_ROOT)/Drivers/CMSIS/Device/ST/STM32WBxx/Include \
 	-DWOLFSSL_USER_SETTINGS -I$(WOLFSSL_ROOT)  -I$(STM32CUBE_ROOT)/Drivers/STM32WBxx_HAL_Driver/Inc/ \
 	-I$(STM32CUBE_ROOT)/Drivers/CMSIS/Include \

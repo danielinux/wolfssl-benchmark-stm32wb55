@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+/* This option is used to enable HW acceleration */
 #define WOLFSSL_STM32_PKA
 
 /* System */
@@ -23,6 +24,7 @@ extern "C" {
 /* Uncomment the next two lines to enable wolfSSL debug */
  #define DEBUG_WOLFSSL
  #define WOLFSSL_LOG_PRINTF
+#define USE_CERT_BUFFERS
 
 
 /* Single precision math */
